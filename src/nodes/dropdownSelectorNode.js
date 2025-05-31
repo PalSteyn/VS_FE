@@ -69,46 +69,80 @@ export const DropdownSelectorNode = ({ id, data }) => {
     },
   ];
 
+  // Add input handle (left) and output handle (right)
+  const handles = [
+    {
+      type: "target",
+      position: Position.Left,
+      id: `${id}-input`,
+    },
+    {
+      type: "source",
+      position: Position.Right,
+      id: `${id}-selected`,
+    },
+  ];
+
   return (
     <BaseNode
       id={id}
       title="Dropdown Selector"
       fields={fields}
-      handles={[
-        {
-          type: "source",
-          position: Position.Right,
-          id: `${id}-selected`,
-        },
-      ]}
+      handles={handles}
     >
       {editMode && (
-        <div style={{ marginTop: 6 }}>
-          <span>Edit Options:</span>
+        <div
+          style={{
+            marginTop: 10,
+            background: "#f6f8ff",
+            border: "1.5px solid #b3baff",
+            borderRadius: 12,
+            boxShadow: "0 2px 8px #b3baff22",
+            padding: 14,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+            maxWidth: 260,
+          }}
+        >
+          <span style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>
+            Edit Options
+          </span>
           {options.map((opt, idx) => (
             <div
               key={opt.value}
-              style={{ display: "flex", alignItems: "center", marginBottom: 2 }}
+              style={{ display: "flex", alignItems: "center", gap: 8 }}
             >
               <input
                 type="text"
                 value={opt.label}
                 onChange={(e) => handleOptionLabelChange(idx, e.target.value)}
-                style={{ width: 70, marginRight: 4 }}
+                style={{
+                  flex: 1,
+                  padding: "6px 8px",
+                  borderRadius: 6,
+                  border: "1px solid #b3baff",
+                  fontSize: 15,
+                  background: "#fff",
+                }}
               />
               <button
                 onClick={() => handleRemoveOption(idx)}
                 disabled={options.length <= 1}
                 style={{
                   color: "#fff",
-                  background: "#f44336",
+                  background: options.length > 1 ? "#f44336" : "#ccc",
                   border: "none",
-                  borderRadius: 3,
-                  width: 18,
-                  height: 18,
+                  borderRadius: 6,
+                  width: 28,
+                  height: 28,
                   cursor: options.length > 1 ? "pointer" : "not-allowed",
                   fontWeight: "bold",
-                  padding: 0,
+                  fontSize: 18,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "background 0.2s",
                 }}
                 title="Remove option"
               >
@@ -122,12 +156,17 @@ export const DropdownSelectorNode = ({ id, data }) => {
               color: "#fff",
               background: "#2196f3",
               border: "none",
-              borderRadius: 3,
-              width: 18,
-              height: 18,
+              borderRadius: 6,
+              width: 28,
+              height: 28,
               cursor: "pointer",
               fontWeight: "bold",
-              padding: 0,
+              fontSize: 20,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 2,
+              transition: "background 0.2s",
             }}
             title="Add option"
           >
