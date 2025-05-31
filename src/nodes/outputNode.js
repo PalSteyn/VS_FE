@@ -37,5 +37,5 @@ export const OutputNode = ({ id, data }) => {
     },
   ];
 
-  return <BaseNode title="Output" fields={fields} handles={handles} />;
+  return <BaseNode id={id} title="Output" fields={fields} handles={handles} />;
 };

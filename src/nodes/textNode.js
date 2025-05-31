@@ -24,5 +24,5 @@ export const TextNode = ({ id, data }) => {
     },
   ];
 
-  return <BaseNode title="Text" fields={fields} handles={handles} />;
+  return <BaseNode id={id} title="Text" fields={fields} handles={handles} />;
 };

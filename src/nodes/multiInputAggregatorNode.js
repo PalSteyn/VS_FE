@@ -1,33 +1,31 @@
-// llmNode.js
-
 import React from "react";
 import { Position } from "reactflow";
 import BaseNode from "./BaseNode";
 
-export const LLMNode = ({ id, data }) => {
+export const MultiInputAggregatorNode = ({ id }) => {
   const handles = [
     {
       type: "target",
       position: Position.Left,
-      id: `${id}-system`,
-      style: { top: `${100 / 3}%` },
+      id: `${id}-input1`,
+      style: { top: "30%" },
     },
     {
       type: "target",
       position: Position.Left,
-      id: `${id}-prompt`,
-      style: { top: `${200 / 3}%` },
+      id: `${id}-input2`,
+      style: { top: "70%" },
     },
     {
       type: "source",
       position: Position.Right,
-      id: `${id}-response`,
+      id: `${id}-output`,
     },
   ];
 
   return (
-    <BaseNode id={id} title="LLM" handles={handles}>
-      <span>This is a LLM.</span>
+    <BaseNode id={id} title="Aggregator" handles={handles}>
+      <span>Aggregates two inputs</span>
     </BaseNode>
   );
 };
