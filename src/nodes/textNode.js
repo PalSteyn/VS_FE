@@ -1,7 +1,7 @@
 // textNode.js
 
 import React, { useState, useEffect, useRef } from "react";
-import { Position, Handle } from "reactflow";
+import { Position, Handle, useUpdateNodeInternals } from "reactflow";
 import BaseNode from "./BaseNode";
 
 // Helper to extract unique variable names in {{var}} format
@@ -21,6 +21,8 @@ export const TextNode = ({ id, data }) => {
   const [textareaHeight, setTextareaHeight] = useState(40);
   const textareaRef = useRef(null);
   const shadowRef = useRef(null);
+
+  const updateNodeInternals = useUpdateNodeInternals();
 
   const width = 380;
   const minHeight = 120;
@@ -60,6 +62,10 @@ export const TextNode = ({ id, data }) => {
       style: { top: `${minHeight / 2}px` },
     },
   ];
+
+  useEffect(() => {
+    updateNodeInternals(id);
+  }, [id, variables, updateNodeInternals]);
 
   return (
     <BaseNode
