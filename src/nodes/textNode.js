@@ -1,7 +1,7 @@
 // textNode.js
 
 import React, { useState, useEffect, useRef } from "react";
-import { Position, Handle, useUpdateNodeInternals } from "reactflow";
+import { Position, useUpdateNodeInternals } from "reactflow";
 import BaseNode from "./BaseNode";
 
 // Helper to extract unique variable names in {{var}} format
@@ -63,9 +63,12 @@ export const TextNode = ({ id, data }) => {
     },
   ];
 
+  // Update node internals whenever variables or text changes
   useEffect(() => {
-    updateNodeInternals(id);
-  }, [id, variables, updateNodeInternals]);
+    if (id) {
+      updateNodeInternals(id);
+    }
+  }, [id, variables, currText, updateNodeInternals]);
 
   return (
     <BaseNode
