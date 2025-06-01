@@ -6,11 +6,12 @@ import BaseNode from "./BaseNode";
 
 // Helper to extract unique variable names in {{var}} format
 function extractVariables(text) {
-  const regex = /\{\{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\}\}/g;
+  const regex = /\{\{\s*([^}]+?)\s*\}\}/g;
   const vars = [];
   let match;
   while ((match = regex.exec(text))) {
-    if (!vars.includes(match[1])) vars.push(match[1]);
+    const varName = match[1].trim();
+    if (!vars.includes(varName)) vars.push(varName);
   }
   return vars;
 }
